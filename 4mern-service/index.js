@@ -5,6 +5,8 @@ import cors from "cors";
 
 import routes from "./routes/schoolRoute";
 
+// require('cors')
+
 const app = express()
 const PORT = 3100
 
