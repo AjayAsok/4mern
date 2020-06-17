@@ -6,7 +6,7 @@ const Student = (props) => {
             <h2 className="header">{props.student.firstName} {props.student.lastName} </h2>
             <div className="card horizontal">
                 <div className="card-image">
-                    <img src="https://lorempixel.com/100/190/nature/6" />
+                    <img src="" alt={props.student.firstName} />
                 </div>
                 <div className="card-stacked">
                     <div className="card-content">
