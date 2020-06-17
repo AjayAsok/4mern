@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Students = (props) => {
-    console.log(props);
     return (<div>
         <ul className="collection with-header">
             <li className="collection-header"><h4>Students</h4></li>
