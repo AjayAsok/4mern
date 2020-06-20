@@ -12,10 +12,39 @@ function App() {
 
   const [currentStudent, updateCurrentStudent] = useState({})
   const [students, setStudents] = useState([])
+  const [addStatus, setaddStatus] = useState(false)
+  const [editStatus, setEditStaus] = useState(false)
+
+  useEffect(() => {
+    getStudent()
+  }, [])
+
+  useEffect(() => {
+    if (editStatus) setaddStatus(false)
+  }, [editStatus])
+  useEffect(() => {
+  }, [currentStudent])
+
+  useEffect(() => {
+  }, [students])
+
+  useEffect(() => {
+    if (addStatus) setEditStaus(false)
+  }, [addStatus])
+
+  function getStudent() {
+    const config = { headers: { "Access-Control-Allow-Origin": "*" } }
+    const url = "/students"
+    axios.get(url, config)
+      .then((Response) => {
+        setStudents(Response.data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
 
   function deleteStudent(id) {
-    console.log(id)
-
     axios.delete('/students/' + id)
       .then((response) => {
         console.log(response);
@@ -26,28 +55,6 @@ function App() {
       })
   }
 
-  useEffect(() => {
-    getStudent()
-  }, [])
-
-  function getStudent() {
-    const config = { headers: { "Access-Control-Allow-Origin": "*" } }
-    const url = "/students"
-    axios.get(url, config)
-      .then((Response) => {
-        setStudents(Response.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
-
-  useEffect(() => {
-  }, [currentStudent])
-
-  useEffect(() => {
-    console.log("Change")
-  }, [students])
 
   return (
     <div className="container-fluid">
@@ -59,13 +66,19 @@ function App() {
         </nav>
       </div>
       <div className="row">
-        <div className='col s3'><Students students={students}
-          updateCurrentStudent={updateCurrentStudent} /></div>
-        <div className='col s9'><Student student={currentStudent} deleteStudent={deleteStudent}
-        /></div>
+        <button className="btn waves-effect waves-light" disabled={addStatus} onClick={() => setaddStatus(true)}>Add Student</button>
       </div>
       <div className="row">
-        <div className='col s12'><StudentForm setStudents={setStudents} getStudent={getStudent} /></div>
+        <div className='col s3'><Students students={students}
+          updateCurrentStudent={updateCurrentStudent} /></div>
+        <div className='col s9'><Student student={currentStudent} setEditStaus={setEditStaus}
+          deleteStudent={deleteStudent} editStatus={editStatus} />
+        </div>
+      </div>
+      <div className="row">
+        <div className='col s12'>{addStatus || editStatus ? <StudentForm setStudents={setStudents} getStudent={getStudent}
+          setaddStatus={setaddStatus} setEditStaus={setEditStaus}
+          student={currentStudent} editStatus={editStatus} /> : null}</div>
       </div>
     </div>
   );

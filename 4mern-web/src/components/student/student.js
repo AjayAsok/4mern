@@ -2,7 +2,6 @@ import React from 'react';
 
 const Student = (props) => {
     let isEmpty = Object.keys(props.student).length === 0
-    console.log(isEmpty)
     return (
         <>
             <div className="col s12 m7">
@@ -21,6 +20,7 @@ const Student = (props) => {
                                     props.student.isEligible ? `Eligible` : `Not Eligible`
                                 }
                             </div>
+                            <button className='btn btn-danger waves-effect waves-light m7' onClick={() => props.setEditStaus(true)}>Edit</button>
                             <button className='btn btn-danger waves-effect waves-light m7' onClick={props.deleteStudent.bind(this, props.student._id)}>Delete Student</button>
                         </div>
                     </div>
