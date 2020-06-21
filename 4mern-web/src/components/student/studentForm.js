@@ -30,7 +30,7 @@ function StudentForm(props) {// extends React.Component {
     function addStudent(event) {
         event.preventDefault();
         console.log(lastName)
-        axios.post('/students', {
+        axios.post('http://127.0.0.1:3100/students', {
             firstName: firstName,
             lastName: lastName,
             regNumber: regNumber
@@ -45,8 +45,8 @@ function StudentForm(props) {// extends React.Component {
 
     function editStudent(event) {
         event.preventDefault();
-        let url = '/students/' + props.student._id
-        axios.post(url, {
+        let url = 'http://127.0.0.1:3100/students/' + props.student._id
+        axios.put(url, {
             firstName: firstName,
             lastName: lastName,
             regNumber: regNumber

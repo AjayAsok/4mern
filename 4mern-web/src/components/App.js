@@ -34,7 +34,7 @@ function App() {
 
   function getStudent() {
     const config = { headers: { "Access-Control-Allow-Origin": "*" } }
-    const url = "/students"
+    const url = "http://127.0.0.1:3100/students"
     axios.get(url, config)
       .then((Response) => {
         setStudents(Response.data)
@@ -45,7 +45,7 @@ function App() {
   }
 
   function deleteStudent(id) {
-    axios.delete('/students/' + id)
+    axios.delete('http://127.0.0.1:3100/students/' + id)
       .then((response) => {
         console.log(response);
         getStudent();

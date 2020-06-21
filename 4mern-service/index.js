@@ -22,11 +22,11 @@ mongoose.connect('mongodb://localhost/schoolDB', {
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 
-routes(app)
-
 // CORS fix
 
 app.use(cors())
+
+routes(app)
 
 app.get('/', (req, res) => {
     res.send(`This is running on ${PORT}`)
