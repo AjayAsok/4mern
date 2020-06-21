@@ -4,16 +4,6 @@ import Student from './student';
 
 function StudentForm(props) {// extends React.Component {
 
-    // constructor(props) {
-    //     super(props)
-    //     this.firstName = React.createRef();
-    //     this.lastName = React.createRef();
-    //     this.regNumber = React.createRef();
-
-    // }
-
-
-
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [regNumber, setRegNumber] = useState(0)
