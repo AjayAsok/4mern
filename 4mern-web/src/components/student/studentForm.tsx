@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Student from './student';
 
-function StudentForm(props) {// extends React.Component {
+function StudentForm(props: any) {// extends React.Component {
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -17,7 +17,7 @@ function StudentForm(props) {// extends React.Component {
     }, [regNumber])
 
 
-    function addStudent(event) {
+    function addStudent(event: any) {
         event.preventDefault();
         console.log(lastName)
         axios.post('http://127.0.0.1:3100/students', {
@@ -33,7 +33,7 @@ function StudentForm(props) {// extends React.Component {
             })
     }
 
-    function editStudent(event) {
+    function editStudent(event: any) {
         event.preventDefault();
         let url = 'http://127.0.0.1:3100/students/' + props.student._id
         axios.put(url, {
@@ -71,7 +71,7 @@ function StudentForm(props) {// extends React.Component {
                 <div className="input-field col s4">
                     <input id="regNumber" type="text"
                         onChange={(e) => {
-                            setRegNumber(e.target.value)
+                            setRegNumber(Number(e.target.value))
                         }} />
                     <label htmlFor="regNumber">Register Number</label>
                 </div>
