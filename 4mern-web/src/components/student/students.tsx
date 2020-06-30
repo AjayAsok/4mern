@@ -50,6 +50,8 @@ import { getStudentFromService } from "../App";
 
 const Students: React.FC = () => {
     const [students, setStudent] = React.useState<Array<IStudent>>([]);
+    const [selectedStudent, setSelectedStudent] = React.useState<IStudent>();
+
 
     useEffect(() => {
         getStudent()
@@ -69,21 +71,23 @@ const Students: React.FC = () => {
         setStudent(currValue => currValue.filter(x => x._id !== id));
     }, []);
 
-    const studentSelection = React.useCallback(async id => {
-        console.log("here");
-    }, []);
     return (
         <React.Fragment>
-            <button onClick={addStudent}>Add Student</button>
-            <ul className="collection with-header">
-                <li className="collection-header"><h4>Students</h4></li>
-                {students.map(x => (
-                    <a href="#!" className="collection-item" key={x._id}
-                        onClick={studentSelection}
-                    >{x.firstName}</a>
+            <div className="col s3">
+                <button onClick={addStudent}>Add Student</button>
+                <ul className="collection with-header">
+                    <li className="collection-header"><h4>Students</h4></li>
+                    {students.map(x => (
+                        <a href="#!" className="collection-item" key={x._id}
+                            onClick={() => setSelectedStudent(x)}
+                        >{x.firstName}</a>
 
-                ))}
-            </ul>
+                    ))}
+                </ul>
+            </div>
+            <div className="col s6">
+                <Student key={selectedStudent ? selectedStudent._id : ""} children={selectedStudent}
+                /></div>
         </React.Fragment>
     );
 };

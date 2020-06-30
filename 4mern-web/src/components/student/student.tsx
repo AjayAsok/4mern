@@ -39,15 +39,49 @@ import { IStudent } from '../App';
 //     );
 // }
 
-const Student: React.FC<IStudent> = ({ firstName, onClick }) => {
-    console.log(firstName)
+// interface StudInterface {
+//     firstName: string
+// }
+
+// const Student: React.FC<StudInterface> = (stud: StudInterface) => {
+//     return (
+//         <div
+//             style={{ display: "flex", justifyContent: "space-between", margin: 8 }}
+//         >
+//             <h5>{stud.firstName}</h5>
+//             {/* <button onClick={onClick}>delete</button> */}
+//         </div>
+//     );
+// };
+const Student: React.FC = (props) => {
+    let student: any
+    student = props.children
     return (
-        <div
-            style={{ display: "flex", justifyContent: "space-between", margin: 8 }}
-        >
-            <h5>{firstName}</h5>
-            <button onClick={onClick}>delete</button>
-        </div>
+        <>
+            {student ?
+                <div className="col s12 m7">
+                    <div>
+                        <h2 className="header">{student.firstName} {student.lastName} </h2>
+                        <div className="card horizontal">
+                            <div className="card-image">
+                                <img src="" alt={student.firstName} />
+                            </div>
+                            <div className="card-stacked">
+                                <div className="card-content">
+                                    <p>RegisterNumber : {student.regNumber}</p>
+                                </div>
+                                <div className="card-action">
+                                    Eligibility: {
+                                        student.isEligible ? `Eligible` : `Not Eligible`
+                                    }
+                                </div>
+                                <button className='btn btn-danger waves-effect waves-light m7' >Edit</button>
+                                <button className='btn btn-danger waves-effect waves-light m7' >Delete Student</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> : ""}
+        </>
     );
 };
 

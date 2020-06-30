@@ -128,7 +128,8 @@ export const getStudentFromService = async (): Promise<IStudent[]> => {
 export default function App() {
   return (
     <div className="App">
-      <Students />
+      <div className="row">
+        <Students /></div>
     </div>
   );
 }
